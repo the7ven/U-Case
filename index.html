@@ -15,13 +15,12 @@
                 <img src="images/ucaselogo.jpeg" alt="">
             </div>
             <div class="nav-links">
-                <a href="#">Acceuil</a>
-                <a href="#">A Propos</a>
-                <a href="#">Categories</a>
-                <a href="#">Gallerie</a>
-                <a href="#">Contacts</a>
+                <a href="#acceuil">Acceuil</a>
+                <a href="#about">A Propos</a>
+                <a href="#product">Produits</a>
+                <a href="#contact">Contacts</a>
             </div>
-            <button class="sign-in-btn">Commandez</button>
+            <button class="sign-in-btn"  id="contacts">Commandez</button>
             <div class="hamburger">
                 <span></span>
                 <span></span>
@@ -31,27 +30,26 @@
 
         <!-- Menu mobile -->
         <div class="mobile-menu">
-            <a href="#">Acceuil</a>
-            <a href="#">A Propos</a>
-            <a href="#">Categories</a>
-            <a href="#">Gallerie</a>
-            <a href="#">Contacts</a>
-            <a href="#" style="font-size: 20px; margin-top: 20px;">Commandez</a>
+            <a href="#acceuil">Acceuil</a>
+            <a href="#about">A Propos</a>
+            <a href="#product">Produits</a>
+            <a href="#contact">Contacts</a>
+            <a href="#product" style="font-size: 20px; margin-top: 20px;">Commandez</a>
         </div>
 
 
     <section class="hero-bg">
 
-      <div class="hero">
+      <div class="hero" id="acceuil">
         <div class="hero-content">
             <div class="hero-content-text">
-               <h1 class="text-w">Bienvenue Sur <br> U-Case</h1>
+               <h1 class="text-w">Bienvenue Sur <br> U'Case</h1>
                <p class="tagline">Protégez votre téléphone avec style</p>
                <p class="description">
                     Découvrez notre collection exclusive de coques de protection élégantes et résistantes. 
                     Design premium, protection maximale pour vos smartphones et tablettes.
                 </p>
-                <button class="cta-button">
+                <button class="cta-button"  id="products">
                    Découvrir la collection
                 </button>
             </div> 
@@ -132,7 +130,7 @@
         -->
     </section>
 
-    <section class="about">
+    <section class="about" id="about">
         <h1>A Propos De Nous</h1>
         <div class="about-content">
             <div class="about-image">
@@ -146,9 +144,95 @@
         </div>
     </section>
 
-    <div class="categories">
+     <section class="products" id="product">
+
+             <h1>Nos Produits Populaires</h1>
+        
+        <div class="bento-grid">
+
+            <div class="bento-item large">
+                <span class="badge">Top Vente</span>
+                <div class="product-bg" style="background-image: url('images/GOOGLE10.jpg');"></div>
+                <div>
+                    <h2 class="product-title">Coque Google Pixel 10</h2>
+                    <p class="product-description">
+                        Ne sacrifiez plus l'esthétique pour la sécurité. Cette coque en silicone bleue est la combinaison idéale entre une protection fiable et un look tendance qui fera ressortir votre Google Pixel 10. Installation et retrait faciles garantis !
+                    </p>
+                    <div class="product-price">3500 fcfa</div>
+                </div>
+            </div>
+
+            <div class="bento-item">
+                <span class="badge new">Nouveau</span>
+                <div class="product-bg" style="background-image: url('images/Coque\ Daylight\ pour\ iPhone\ 16\ -\ Island\ Mist.jpg');"></div>
+                <h2 class="product-title">coque iphone 16</h2>
+                <p class="product-description">
+                    
+                    Sublimez votre nouvel iPhone 16 avec notre coque en silicone, d'un ravissant Rose Poudré (ou Rose Quartz/Rose Bonbon selon la nuance).
+                </p>
+                <div class="product-price">5000 fcfa</div>
+            </div>
+
+            <div class="bento-item">
+                <div class="product-bg" style="background-image: url('images/JETech\ Coque\ pour\ iPad\ Mini\ \(A17\ Pro\,\ Modèle\ 2024\,\ 7ème\ Génération\)\ _\ Mini\ 6\ \(8\,3\ Pouces\,\ Modèle\ 2021\,\ 6ème\ Génération\)\,\ Étui\ Mince\ Tablette\ avec\ Dos.jpg');"></div>
+                <h2 class="product-title"> protection pour tablette</h2>
+                <p class="product-description"> Protégez et optimisez l'utilisation de votre iPad Mini 6 avec cet étui fin et élégant ,Conçu pour la portabilité, cet étui est l'accessoire idéal pour le quotidien.</p>
+                <div class="product-price">8000 fcfa</div>
+            </div>
+
+            <div class="bento-item wide">
+                <span class="badge promo">-30%</span>
+                <div class="product-bg" style="background-image: url('images/ORNARTO\ Coque\ pour\ AirPods\ Pro\ 3\ \(2025\)\ –\ Étui\ à\ 2\ Parties\ Séparées\ en\ Silicone\ avec\ Structure\ à\ 2\ Couches\ \(Intérieur\ PC\ Dur\)\,\ Protection\ Antichoc\,.jpg');"></div>
+                <h2 class="product-title">Coque pour airpods</h2>
+                <p class="product-description">
+                    Conçue dans un matériau résistant, elle offre une absorption des chocs et une défense efficace contre les chutes et les rayures.
+                </p>
+                <div class="product-price">5000 fcfa</div>
+            </div>
+
+           
+        </div>
+
+     </section>
       
-    </div>
+     <footer>
+        <div class="footer-content" id="contact">
+            <div class="footer-section">
+                <h3>U'Case</h3>
+                <p>Votre destination pour des coques de téléphone élégantes et protectrices. Qualité premium garantie.</p>
+            </div>
+
+            <div class="footer-section">
+                <h3>Suivez-nous</h3>
+                <p>Restez connecté avec nous sur les réseaux sociaux</p>
+                <div class="social-links">
+                    <a href="https://twitter.com" target="_blank" aria-label="X (Twitter)">
+                        <i class="fab fa-x-twitter"></i>
+                    </a>
+                    <a href="https://facebook.com" target="_blank" aria-label="Facebook">
+                        <i class="fab fa-facebook-f"></i>
+                    </a>
+                    <a href="https://instagram.com" target="_blank" aria-label="Instagram">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                </div>
+            </div>
+
+            <div class="footer-section">
+                <h3>Contact</h3>
+                <p>Besoin d'aide ? Contactez-nous</p>
+                <div class="contact-info">
+                    <i class="fas fa-phone"></i>
+                    <span>+225 07 XX XX XX XX</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>&copy; 2025 U'Case. Tous droits réservés.</p>
+            <p class="designer">Designed by Corneille Nkwel</p>
+        </div>
+    </footer>
 
     <script src="scripts.js"></script>
  </body>
