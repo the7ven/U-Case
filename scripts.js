@@ -1,34 +1,8 @@
-let currentSlide = 0;
-const slides = document.querySelectorAll(".slide");
-const dots = document.querySelectorAll(".dot");
+
 const hamburger = document.querySelector(".hamburger");
 const mobileMenu = document.querySelector(".mobile-menu");
 
-function showSlide(n) {
-  slides.forEach((slide) => slide.classList.remove("active"));
-  dots.forEach((dot) => dot.classList.remove("active"));
 
-  if (n >= slides.length) {
-    currentSlide = 0;
-  } else if (n < 0) {
-    currentSlide = slides.length - 1;
-  } else {
-    currentSlide = n;
-  }
-
-  slides[currentSlide].classList.add("active");
-  dots[currentSlide].classList.add("active");
-}
-
-function nextSlide() {
-  showSlide(currentSlide + 1);
-}
-
-dots.forEach((dot) => {
-  dot.addEventListener("click", () => {
-    showSlide(parseInt(dot.getAttribute("data-slide")));
-  });
-});
 
 // Menu hamburger
 hamburger.addEventListener("click", () => {
@@ -44,5 +18,15 @@ mobileMenu.querySelectorAll("a").forEach((link) => {
   });
 });
 
-// Auto-play
-setInterval(nextSlide, 5000);
+
+
+ // IMPORTANT: Remplace ce numéro par ton propre numéro WhatsApp
+        const WHATSAPP_NUMBER = '237651487883'; // Format: code pays + numéro
+        
+        function commanderWhatsApp(produit, prix) {
+            // Message personnalisé pour WhatsApp
+            const message = `Bonjour! Je suis intéressé(e) par le produit suivant:%0A%0A📦 *${produit}*%0A💰 Prix: ${prix}%0A%0AMerci de me contacter pour finaliser ma commande.`;
+            
+            // Ouvre WhatsApp avec le message pré-rempli
+            window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${message}`, '_blank');
+        }
