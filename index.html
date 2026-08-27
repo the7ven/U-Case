@@ -1,284 +1,259 @@
 <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="icon" type="image/png" sizes="32x32" href="images/ucaselogo.jpeg">
-    <link rel="stylesheet" href="style.css" />
-    <title>UCase</title>
-  </head>
- <body>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>U‑case</title>
+  <link rel="icon" type="image/png" sizes="32x32" href="images/ucaselogo.jpeg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Manrope:wght@300;400;500;600;700&display=swap">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
 
-      <!-- Navigation -->
-        <div class="nav-bar">
-            <div class="logo">
-                <img src="images/ucaselogo.jpeg" alt="">
-            </div>
-            <div class="nav-links">
-                <a href="#acceuil">Acceuil</a> 
-                <a href="#about">A Propos</a>
-                <a href="#product">Produits</a>
-                <a href="#contact">Contacts</a>
-            </div>
-            <button class="sign-in-btn"  id="contacts">Commandez</button>
-            <div class="hamburger">
-                <span></span>
-                <span></span>
-                <span></span>
-            </div>
-        </div>
+<main class="page">
 
-        <!-- Menu mobile -->
-        <div class="mobile-menu">
-            <a href="#acceuil">Acceuil</a>
-            <a href="#about">A Propos</a>
-            <a href="#product">Produits</a>
-            <a href="#contact">Contacts</a>
-            <a href="#product" style="font-size: 20px; margin-top: 20px;">Commandez</a>
-        </div>
-
-
-    <section class="hero-bg">
-
-      <div class="hero" id="acceuil">
-        <div class="hero-content">
-            <div class="hero-content-text">
-               <h1 class="text-w">Bienvenue Sur <br> U'Case</h1>
-               <p class="tagline">Protégez votre téléphone avec style</p>
-               <p class="description">
-                    Découvrez notre collection exclusive de coques de protection élégantes et résistantes. 
-                    Design premium, protection maximale pour vos smartphones et tablettes.
-                </p>
-               
-                 <a href="https://wa.me/c/237651487883" class="cta-button" > Découvrir la collection</a> 
-            
-            </div> 
-
-            
-        </div>
-        
+  <!-- Header -->
+  <header class="site-header">
+    <div class="brand">
+      <img src="images/ucaselogo.jpeg" alt="U‑case" class="brand__logo">
+      <div class="brand__text">
+        <div class="brand__name">U‑CASE</div>
+        <div class="brand__tagline">LA SÉCURITÉ À PORTÉE DE MAIN</div>
       </div>
+    </div>
+    <nav class="main-nav">
+      <a href="#">iPhone</a>
+      <a href="#">Accessoires</a>
+      <a href="#">À propos</a>
+    </nav>
+    <div class="header-right">
+      <span>FR</span>
+      <button class="cart-pill" id="cart-toggle" type="button">PANIER · <span class="cart-count">0</span></button>
+    </div>
+    <button class="hamburger" type="button" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="mobile-menu">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+  </header>
 
+  <!-- Menu mobile -->
+  <nav class="mobile-menu" id="mobile-menu">
+    <a href="#">iPhone</a>
+    <a href="#">Accessoires</a>
+    <a href="#catalogue">Catalogue</a>
+    <a href="#">À propos</a>
+    <a href="https://wa.me/237651487883">Commander sur WhatsApp</a>
+  </nav>
 
-    
-   
-</section>
-
-    <section class="about" id="about">
-        <h1>A Propos De Nous</h1>
-        <div class="about-content">
-            <div class="about-image">
-                <img src="images/ucaselogo.jpeg" alt="">
-            </div>
-            <div class="about-text">
-                <h3>
-                   U’Case est née d’une envie simple : proposer des coques de téléphone qui protègent… <br> mais surtout qui reflètent la personnalité de chacun.
-                    Chez nous, chaque design a une histoire, <br> chaque détail compte, et chaque client est au centre de tout. <br>
-                     On crée des coques qui durent, qui stylent et qui te ressemblent. 
-                </h3>
-            </div>
+  <!-- Hero split -->
+  <div class="hero">
+    <div class="hero__main">
+      <div class="hero__intro">
+        <div class="eyebrow">Coques iPhone · Câbles · Chargeurs · Sacoches</div>
+        <h1 class="hero__title">Protégez votre téléphone<br>avec style</h1>
+        <p class="hero__lead">Découvrez notre collection exclusive de coques de protection élégantes et résistantes. Design premium, protection maximale pour vos iPhone.</p>
+        <div class="hero__actions">
+          <a href="https://wa.me/237651487883" class="btn--primary">Commander sur WhatsApp</a>
+          <a href="#catalogue" class="btn--ghost">Voir le catalogue</a>
         </div>
-    </section>
+      </div>
+      <div class="hero__meta">
+        <span>LIVRAISON DOUALA 24 H</span>
+        <span>PARTOUT AU CAMEROUN</span>
+        <span>PAIEMENT À LA LIVRAISON</span>
+      </div>
+    </div>
+    <div class="hero__visual">
+      <img src="images/ChatGPT Image 27 août 2026, 12_03_47.png" alt="Coque U‑case sur iPhone" class="hero__img">
+      <figcaption class="hero__caption">
+        <strong>Série Cuir</strong>
+        <span>Cuir pleine fleur tanné au végétal, bord surpiqué. Il se patine avec le temps et prend la teinte de la main.</span>
+      </figcaption>
+    </div>
+  </div>
 
-     <section class="products" id="product">
-
-             <h1>Nos Produits Populaires</h1>
-        
-        <div class="bento-grid">
-
-            <div class="bento-item large">
-                <span class="badge">Top Vente</span>
-                <div class="product-bg" style="background-image: url('images/WhatsApp\ Image\ 2025-12-06\ at\ 11.43.16.jpeg');"></div>
-                <div>
-                    <h2 class="product-title">Coque Iphone</h2>
-                    <p class="product-description">
-                        Ne sacrifiez plus l'esthétique pour la sécurité. Cette coque en silicone bleue est la combinaison idéale entre une protection fiable et un look tendance qui fera ressortir votre Google Pixel 10. Installation et retrait faciles garantis !
-                    </p>
-                    <div class="product-price">5000 fcfa</div>
-                </div>
-            </div>
-
-            <div class="bento-item">
-                <span class="badge new">Nouveau</span>
-                <div class="product-bg" style="background-image: url('images/Coque\ Daylight\ pour\ iPhone\ 16\ -\ Island\ Mist.jpg');"></div>
-                <h2 class="product-title">coque iphone 16</h2>
-                <p class="product-description">
-                    
-                    Sublimez votre nouvel iPhone 16 avec notre coque en silicone, d'un ravissant Rose Poudré (ou Rose Quartz/Rose Bonbon selon la nuance).
-                </p>
-                <div class="product-price">5000 fcfa</div>
-            </div>
-
-            <div class="bento-item">
-                <div class="product-bg" style="background-image: url('images/WhatsApp\ Image\ 2025-12-15\ at\ 18.49.26\ \(1\).jpeg');"></div>
-                <h2 class="product-title"> protection pour tablette</h2>
-                <p class="product-description"> Protégez et optimisez l'utilisation de votre iPad Mini 6 avec cet étui fin et élégant ,Conçu pour la portabilité, cet étui est l'accessoire idéal pour le quotidien.</p>
-                <div class="product-price">10000 fcfa</div>
-            </div>
-
-            <div class="bento-item wide">
-                <span class="badge promo">-30%</span>
-                <div class="product-bg" style="background-image: url('images/ORNARTO\ Coque\ pour\ AirPods\ Pro\ 3\ \(2025\)\ –\ Étui\ à\ 2\ Parties\ Séparées\ en\ Silicone\ avec\ Structure\ à\ 2\ Couches\ \(Intérieur\ PC\ Dur\)\,\ Protection\ Antichoc\,.jpg');"></div>
-                <h2 class="product-title">Coque pour airpods</h2>
-                <p class="product-description">
-                    Conçue dans un matériau résistant, elle offre une absorption des chocs et une défense efficace contre les chutes et les rayures.
-                </p>
-                <div class="product-price">5000 fcfa</div>
-            </div>
-
-           
+  <!-- À propos développé -->
+  <div class="section--light-stack">
+    <div class="about2__head">
+      <div class="about2__headline">
+        <div class="eyebrow--blue">À propos</div>
+        <h2 class="display-2">Une boutique née d'un téléphone cassé.</h2>
+      </div>
+      <p class="about2__text">U‑case est une boutique en ligne basée à Douala. Elle est née d'une chute de trop et d'une coque qui n'a rien retenu. Depuis, chaque référence est vérifiée avant d'être proposée : ajustement au dixième de millimètre, boutons qui restent nets après six mois, angles renforcés. On ne vend que ce qu'on accepterait de mettre sur son propre téléphone.</p>
+    </div>
+    <div class="about2__grid">
+      <div class="about2__logo">
+        <img src="images/ucaselogo.jpeg" alt="Logo U‑case — la sécurité à portée de main" class="about2__logo-img">
+      </div>
+      <div class="about2__points">
+        <div class="point">
+          <div class="point__title">Sélection courte</div>
+          <p class="point__text">Une seule marque de téléphone, jamais plus de cinq finitions par modèle.</p>
         </div>
-
-     </section>
-
-
- <div class="container">
-        <h1> Nos Produits</h1>
-
-        <!-- Catégorie 1: Électronique -->
-        <div class="category">
-            <h2 class="category-title">Iphone</h2>
-            <div class="products-grid">
-                <div class="products-card">
-                    <img src="images/WhatsApp Image 2025-12-06 at 11.43.16.jpeg" alt="Smartphone Pro" class="products-image">
-                    
-                    <div class="products-price">5000 fcfa</div>
-                    <button class="add-to-cart" onclick="commanderWhatsApp('Etuit ', '5000 fcfa')">Commander sur WhatsApp</button>
-                </div>
-                <div class="products-card">
-                    <img src="images/WhatsApp Image 2025-12-06 at 11.43.17 (1).jpeg"  class="products-image">
-                    
-                    <div class="products-price">5000 fcfa</div>
-                    <button class="add-to-cart" onclick="commanderWhatsApp('Etuit ', '5000 fcfa')">Commander sur WhatsApp</button>
-                </div>
-                <div class="products-card">
-                    <img src="images/WhatsApp Image 2025-12-06 at 11.43.17.jpeg" alt="Casque Sans Fil" class="products-image">
-                    
-                    <div class="products-price">5000 fcfa</div>
-                    <button class="add-to-cart" onclick="commanderWhatsApp('Etuit ', '5000 fcfa')">Commander sur WhatsApp</button>
-                </div>
-            </div>
+        <div class="point">
+          <div class="point__title">Conseil avant achat</div>
+          <p class="point__text">Envoyez le modèle de votre téléphone sur WhatsApp, on vous oriente vers la bonne coque.</p>
         </div>
-
-        <!-- Catégorie 2: Mode -->
-        <div class="category">
-            <h2 class="category-title">Google Pixel</h2>
-            <div class="products-grid">
-                <div class="products-card">
-                    <img src="images/WhatsApp Image 2025-12-15 at 18.49.53 (1).jpeg"  class="products-image">
-                   
-                    <div class="products-price">5000 fcfa</div>
-                    <button class="add-to-cart" onclick="commanderWhatsApp('Etuit ', '5000 fcfa')">Commander sur WhatsApp</button>
-                </div>
-                <div class="products-card">
-                    <img src="images/WhatsApp Image 2025-12-15 at 18.49.53.jpeg"  class="products-image">
-                    
-                    <div class="products-price">5000 fcfa</div>
-                    <button class="add-to-cart" onclick="commanderWhatsApp('Etuit ', '5000 fcfa')">Commander sur WhatsApp</button>
-                </div>
-                <div class="products-card">
-                    <img src="images/WhatsApp Image 2025-12-15 at 18.49.54.jpeg"  class="products-image">
-                    
-                    <div class="products-price">5000 fcfa</div>
-                    <button class="add-to-cart" onclick="commanderWhatsApp('Etuit ', '5000 fcfa')">Commander sur WhatsApp</button>
-                </div>
-            </div>
+        <div class="point">
+          <div class="point__title">Paiement à la livraison</div>
+          <p class="point__text">Vous réglez à la réception, à Douala. Livraison partout au Cameroun.</p>
         </div>
+      </div>
+    </div>
+  </div>
 
-        <!-- Catégorie 3: Maison & Déco -->
-        <div class="category">
-            <h2 class="category-title">Samsung</h2>
-            <div class="products-grid">
-                <div class="products-card">
-                    <img src="images/WhatsApp Image 2025-12-15 at 18.50.56 (1).jpeg"  class="products-image">
-                    
-                    <div class="products-price">5000 fcfa</div>
-                    <button class="add-to-cart" onclick="commanderWhatsApp('Etuit ', '5000 fcfa')">Commander sur WhatsApp</button>
-                </div>
-                <div class="products-card">
-                    <img src="images/WhatsApp Image 2025-12-15 at 18.50.56.jpeg"  class="products-image">
-                    
-                    <div class="products-price">5000 fcfa</div>
-                    <button class="add-to-cart" onclick="commanderWhatsApp('Etuit ', '5000 fcfa')">Commander sur WhatsApp</button>
-                </div>
-                <div class="products-card">
-                    <img src="images/WhatsApp Image 2025-12-15 at 18.50.57.jpeg"  class="products-image">
-                    
-                    <div class="products-price">5000 fcfa</div>
-                    <button class="add-to-cart" onclick="commanderWhatsApp('Etuit ', '5000 fcfa')">Commander sur WhatsApp</button>
-                </div>
-            </div>
-        </div>
+  <!-- Bandeau -->
+  <div class="banner">
+    <span>Livraison rapide à Douala et partout au Cameroun</span>
+    <span>Nouvelle série cuir — disponible</span>
+  </div>
 
-        <!-- Catégorie 4: Sport & Fitness -->
-        <div class="category">
-            <h2 class="category-title"> Tablette </h2>
-            <div class="products-grid">
-                <div class="products-card">
-                    <img src="images/WhatsApp Image 2025-12-15 at 18.49.25.jpeg"  class="products-image">
-                    
-                    <div class="products-price">5000 fcfa</div>
-                    <button class="add-to-cart" onclick="commanderWhatsApp('Etuit ', '5000 fcfa')">Commander sur WhatsApp</button>
-                </div>
-                <div class="products-card">
-                    <img src="images/WhatsApp Image 2025-12-15 at 18.49.26.jpeg"  class="products-image">
-                    
-                    <div class="products-price">5000 fcfa</div>
-                    <button class="add-to-cart" onclick="commanderWhatsApp('Etuit ', '5000 fcfa')">Commander sur WhatsApp</button>
-                </div>
-                <div class="products-card">
-                    <img src="images/WhatsApp Image 2025-12-15 at 18.49.26 (1).jpeg"  class="products-image">
-                    
-                    <div class="products-price">5000 fcfa</div>
-                    <button class="add-to-cart" onclick="commanderWhatsApp('Etuit ', '5000 fcfa')">Commander sur WhatsApp</button>
-                </div>
-            </div>
-        </div>
+  <!-- Catalogue -->
+  <div class="section--light" id="catalogue">
+    <div class="section__head">
+      <h2 class="section__title">Choisissez votre catégorie</h2>
+      <span class="section__meta" id="catalog-meta">COQUES + ACCESSOIRES</span>
+    </div>
+    <div class="catalog">
+      <button type="button" class="catalog__row" data-category="coques" aria-pressed="false">
+        <span class="catalog__num">01</span>
+        <span class="catalog__name">Coques iPhone</span>
+        <span class="catalog__desc">13 · 14 · 15 · 16 · 17 Pro Max — MagSafe intégré</span>
+        <span class="catalog__thumb"></span>
+        <span class="catalog__arrow">→</span>
+      </button>
+      <button type="button" class="catalog__row" data-category="cables" aria-pressed="false">
+        <span class="catalog__num">02</span>
+        <span class="catalog__name">Câbles</span>
+        <span class="catalog__desc">USB-C tressé 1 m et 2 m — certifiés MFi</span>
+        <span class="catalog__thumb"></span>
+        <span class="catalog__arrow">→</span>
+      </button>
+      <button type="button" class="catalog__row" data-category="chargeurs" aria-pressed="false">
+        <span class="catalog__num">03</span>
+        <span class="catalog__name">Chargeurs</span>
+        <span class="catalog__desc">Secteur 30 W et 45 W, sans fil MagSafe 15 W</span>
+        <span class="catalog__thumb"></span>
+        <span class="catalog__arrow">→</span>
+      </button>
+      <button type="button" class="catalog__row catalog__row--last" data-category="sacoches" aria-pressed="false">
+        <span class="catalog__num">04</span>
+        <span class="catalog__name">Sacoches de charge</span>
+        <span class="catalog__desc">Pochettes zippées pour chargeur et câbles</span>
+        <span class="catalog__thumb"></span>
+        <span class="catalog__arrow">→</span>
+      </button>
     </div>
 
+    <div class="section__head--spaced">
+      <h2 class="section__title" id="products-title">Nouveautés &amp; best-sellers</h2>
+      <button type="button" class="link-mono" id="show-all">TOUT VOIR →</button>
+    </div>
+    <div class="product-grid" id="product-grid"></div>
+  </div>
 
+  <!-- À propos en bandes -->
+  <div class="section--dark-split">
+    <div class="about__head">
+      <div class="eyebrow">La sélection</div>
+      <h2 class="display-2">Des coques, et le strict nécessaire autour.</h2>
+    </div>
+    <div class="about__body">
+      <p class="about__text">Chaque référence est choisie sur pièce et testée en chute réelle avant d'entrer au catalogue. Elle n'y reste que si elle protège vraiment. La sélection est courte volontairement : elle évolue à chaque sortie d'iPhone.</p>
+      <div class="stat-row">
+        <div><div class="stat__num">Douala</div><div class="stat__label">EXPÉDITION</div></div>
+        <div><div class="stat__num">3 m</div><div class="stat__label">TEST DE CHUTE</div></div>
+        <div><div class="stat__num">24</div><div class="stat__label">RÉFÉRENCES</div></div>
+      </div>
+    </div>
+  </div>
 
-
-      
-     <footer>
-        <div class="footer-content" id="contact">
-            <div class="footer-section">
-                <h3>U'Case</h3>
-                <p>Votre destination pour des coques de téléphone élégantes et protectrices. Qualité premium garantie.</p>
-            </div>
-
-            <div class="footer-section">
-                <h3>Suivez-nous</h3>
-                <p>Restez connecté avec nous sur les réseaux sociaux</p>
-                <div class="social-links">
-                    <a href="https://twitter.com" target="_blank" aria-label="X (Twitter)">
-                        <i class="fab fa-x-twitter"></i>
-                    </a>
-                    <a href="https://facebook.com" target="_blank" aria-label="Facebook">
-                        <i class="fab fa-facebook-f"></i>
-                    </a>
-                    <a href="https://instagram.com" target="_blank" aria-label="Instagram">
-                        <i class="fab fa-instagram"></i>
-                    </a>
-                </div>
-            </div>
-
-            <div class="footer-section">
-                <h3>Contact</h3>
-                <p>Besoin d'aide ? Contactez-nous</p>
-                <div class="contact-info">
-                    <i class="fas fa-phone"></i>
-                    <span>+237  651487883</span>
-                </div>
-            </div>
+  <!-- Contact -->
+  <div class="contact">
+    <div class="contact__col">
+      <div class="eyebrow--sm">Où nous trouver</div>
+      <div class="contact__addr">Boutique 100 % en ligne<br>Douala, Cameroun</div>
+      <div class="contact__muted">Livraison partout au Cameroun</div>
+    </div>
+    <div class="contact__col contact__col--b">
+      <div class="eyebrow--sm">Commandes</div>
+      <div class="hours-row"><span>WhatsApp</span><span class="hours-row__time">7 j/7</span></div>
+      <div class="hours-row"><span>Réponse</span><span class="hours-row__time">sous 1 h</span></div>
+      <div class="hours-row"><span>Livraison Douala</span><span class="hours-row__time">24 – 48 h</span></div>
+    </div>
+    <div class="contact__col contact__col--c">
+      <div class="eyebrow--sm">Commander</div>
+      <p class="contact__note">Envoyez votre commande sur WhatsApp. Paiement à la livraison à Douala.</p>
+      <a href="https://wa.me/237651487883" class="btn--light">Commander sur WhatsApp</a>
+      <div class="social">
+        <div class="eyebrow--sm">Nous suivre</div>
+        <div class="social__links">
+          <a href="https://instagram.com/">INSTAGRAM</a>
+          <a href="https://tiktok.com/">TIKTOK</a>
+          <a href="https://pinterest.com/">PINTEREST</a>
         </div>
+      </div>
+    </div>
+  </div>
 
-        <div class="footer-bottom">
-            <p>&copy; 2025 U'Case. Tous droits réservés.</p>
-            <p class="designer">Designed by Corneille Nkwel</p>
-        </div>
-    </footer>
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="site-footer__brand">
+      <img src="images/ucaselogo.jpeg" alt="" class="site-footer__logo">
+      <span>U‑CASE — DOUALA</span>
+    </div>
+    <div class="site-footer__links">
+      <a href="https://instagram.com/">INSTAGRAM</a>
+      <a href="https://tiktok.com/">TIKTOK</a>
+      <a href="https://pinterest.com/">PINTEREST</a>
+      <a href="https://facebook.com/">FACEBOOK</a>
+    </div>
+    <span>MENTIONS LÉGALES · CGV · LIVRAISON</span>
+  </footer>
 
-    <script src="scripts.js"></script>
- </body>
+</main>
+
+<!-- Panier -->
+<div class="cart-overlay" id="cart-overlay"></div>
+<aside class="cart-drawer" id="cart-drawer" aria-label="Panier" aria-hidden="true">
+  <div class="cart-drawer__head">
+    <span class="cart-drawer__title">Votre panier</span>
+    <button class="cart-drawer__close" id="cart-close" type="button" aria-label="Fermer le panier">✕</button>
+  </div>
+  <div class="cart-drawer__items" id="cart-items"></div>
+  <div class="cart-drawer__foot">
+    <button class="cart-clear" id="cart-clear" type="button" hidden>Vider le panier</button>
+    <div class="cart-drawer__total">
+      <span>Total</span>
+      <span id="cart-total">0 FCFA</span>
+    </div>
+    <a class="cart-drawer__wa" id="cart-wa" href="#" target="_blank" rel="noopener">Commander sur WhatsApp</a>
+    <p class="cart-drawer__note">Paiement à la livraison à Douala · commande confirmée sur WhatsApp.</p>
+  </div>
+</aside>
+
+<!-- Confirmation -->
+<div class="confirm" id="confirm" hidden>
+  <div class="confirm__backdrop" data-confirm-cancel></div>
+  <div class="confirm__box" role="alertdialog" aria-labelledby="confirm-title" aria-describedby="confirm-text">
+    <p class="confirm__title" id="confirm-title">Vider le panier ?</p>
+    <p class="confirm__text" id="confirm-text">Tous les articles seront retirés du panier.</p>
+    <div class="confirm__actions">
+      <button class="confirm__btn confirm__btn--ghost" type="button" data-confirm-cancel>Annuler</button>
+      <button class="confirm__btn confirm__btn--primary" type="button" id="confirm-ok">Vider le panier</button>
+    </div>
+  </div>
+</div>
+
+<!-- Toast -->
+<div class="toast" id="toast" role="status" aria-live="polite" hidden>
+  <span class="toast__msg"></span>
+  <button class="toast__action" id="toast-action" type="button" hidden></button>
+</div>
+
+<script src="scripts.js"></script>
+</body>
 </html>
