@@ -503,15 +503,8 @@ a.btn--ghost:hover { border-color: var(--accent); color: var(--ink); }
   -webkit-box-orient: vertical;
   overflow: hidden;
 }
-.product__actions {
-  display: flex;
-  align-items: center;
-  gap: 12px;
+.product__details {
   margin-top: auto;
-  padding-top: 6px;
-}
-.product__add {
-  flex: 1;
   padding: 11px 12px;
   background: none;
   border: 1px solid var(--line-2);
@@ -522,24 +515,11 @@ a.btn--ghost:hover { border-color: var(--accent); color: var(--ink); }
   cursor: pointer;
   transition: background 0.15s ease, color 0.15s ease, border-color 0.15s ease;
 }
-.product__add:hover,
-.product__add.added {
+.product__details:hover {
   background: var(--fill);
   border-color: var(--fill);
   color: var(--on-fill);
 }
-.product__open--link {
-  flex-shrink: 0;
-  padding: 6px 2px;
-  font-family: 'IBM Plex Mono', monospace;
-  font-size: 10.5px;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  text-decoration: underline;
-  color: var(--muted);
-  width: auto;
-}
-.product__open--link:hover { color: var(--accent); }
 
 /* ---------- À propos (bandes) ---------- */
 .section--dark-split {
@@ -1122,15 +1102,6 @@ a.btn--light:hover { background: var(--fill-hover); color: var(--on-fill); }
   cursor: pointer;
 }
 .pmodal__add:hover { background: var(--fill-hover); border-color: var(--fill-hover); }
-.pmodal__wa {
-  padding: 13px 18px;
-  border: 1px solid var(--line-2);
-  color: var(--ink);
-  text-align: center;
-  font-size: 13.5px;
-  font-weight: 600;
-}
-.pmodal__wa:hover { border-color: var(--accent); color: var(--accent); }
 
 /* ======================================================
    Responsive

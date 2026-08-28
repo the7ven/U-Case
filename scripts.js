@@ -395,10 +395,7 @@ function productCard(p) {
           <span class="product__price">${fmt(p.price)}</span>
         </div>
         <p class="product__teaser">${escapeHtml(p.teaser || p.spec)}</p>
-        <div class="product__actions">
-          <button class="product__add" type="button" data-name="${n}" data-price="${p.price}">Ajouter au panier</button>
-          <button class="product__open product__open--link" type="button" data-name="${n}">Détails</button>
-        </div>
+        <button class="product__open product__details" type="button" data-name="${n}">Voir les détails</button>
       </div>
     </article>`;
 }
@@ -457,27 +454,11 @@ if (productGridEl) {
     });
   }
 
-  // Délégation : ouvrir la fiche ou ajouter au panier (la grille est régénérée)
+  // Délégation : ouvrir la fiche produit (la grille est régénérée)
   productGridEl.addEventListener("click", (e) => {
-    const addBtn = e.target.closest(".product__add");
-    if (addBtn) {
-      addToCart(addBtn.dataset.name, Number(addBtn.dataset.price));
-      flashAdded(addBtn);
-      openCart();
-      return;
-    }
     const openBtn = e.target.closest(".product__open");
     if (openBtn) openProductModal(openBtn.dataset.name);
   });
-}
-
-function flashAdded(btn) {
-  btn.classList.add("added");
-  btn.textContent = "Ajouté ✓";
-  setTimeout(() => {
-    btn.classList.remove("added");
-    btn.textContent = "Ajouter au panier";
-  }, 1200);
 }
 
 /* ---------- Fiche produit (modale) ---------- */
@@ -490,7 +471,6 @@ const pmEls = pmodal && {
   price: document.getElementById("pmodal-price"),
   qty: document.getElementById("pmodal-qty"),
   add: document.getElementById("pmodal-add"),
-  wa: document.getElementById("pmodal-wa"),
 };
 let pmProduct = null;
 let pmQty = 1;
@@ -498,13 +478,7 @@ let pmQty = 1;
 function pmRefresh() {
   if (!pmProduct) return;
   pmEls.qty.textContent = pmQty;
-  const lineTotal = pmProduct.price * pmQty;
-  pmEls.add.textContent = `Ajouter au panier — ${fmt(lineTotal)}`;
-  const msg =
-    `Bonjour U-case ! Je souhaite commander :\n\n` +
-    `• ${pmProduct.name} × ${pmQty} — ${fmt(lineTotal)}\n\n` +
-    `Merci de me confirmer la disponibilité et le délai de livraison.`;
-  pmEls.wa.href = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(msg)}`;
+  pmEls.add.textContent = `Ajouter au panier — ${fmt(pmProduct.price * pmQty)}`;
 }
 
 function openProductModal(name) {
