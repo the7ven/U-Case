@@ -4,6 +4,62 @@
 
 const WHATSAPP_NUMBER = "237651487883"; // code pays + numéro
 
+/* ---------- Animations au scroll (hero) ---------- */
+(function heroScrollAnim() {
+  const hero = document.querySelector(".hero");
+  if (!hero) return;
+  const anims = hero.querySelectorAll(".anim");
+  if (!anims.length) return;
+
+  if (!("IntersectionObserver" in window)) {
+    anims.forEach((el) => el.classList.add("is-in"));
+    return;
+  }
+
+  const setIn = (v) =>
+    anims.forEach((el) => el.classList.toggle("is-in", v));
+
+  let armed = false;
+  const io = new IntersectionObserver(
+    (entries) => {
+      const inView = entries[entries.length - 1].isIntersecting;
+      if (armed) {
+        setIn(inView);
+        return;
+      }
+      armed = true;
+      // laisser le navigateur peindre l'état caché avant de lancer la transition
+      requestAnimationFrame(() => requestAnimationFrame(() => setIn(inView)));
+    },
+    { threshold: 0.2 }
+  );
+  io.observe(hero);
+})();
+
+/* ---------- Révélation au défilement (reste de la page) ---------- */
+(function scrollReveal() {
+  const els = document.querySelectorAll(".reveal");
+  if (!els.length) return;
+
+  if (!("IntersectionObserver" in window)) {
+    els.forEach((el) => el.classList.add("is-in"));
+    return;
+  }
+
+  const io = new IntersectionObserver(
+    (entries) => {
+      requestAnimationFrame(() => {
+        entries.forEach((e) =>
+          e.target.classList.toggle("is-in", e.isIntersecting)
+        );
+      });
+    },
+    { threshold: 0, rootMargin: "0px 0px -10% 0px" }
+  );
+
+  els.forEach((el) => io.observe(el));
+})();
+
 /* ---------- Navbar responsive : menu hamburger ---------- */
 const hamburger = document.querySelector(".hamburger");
 const mobileMenu = document.querySelector(".mobile-menu");
@@ -276,10 +332,13 @@ if (cartDrawer) {
 /* ---------- Catalogue par catégorie ---------- */
 const PRODUCTS = [
   // NOTE : produits et prix provisoires — à remplacer par le vrai catalogue.
-  { name: "Monolithe Aluminium", spec: "iPhone 17 Pro — Graphite anodisé", price: 9000, cat: "coques", badge: "Nouveau", featured: true },
-  { name: "Série Cuir", spec: "iPhone 15 · 16 · 17 — Cuir pleine fleur", price: 8000, cat: "coques", featured: true },
-  { name: "Silicone Mat", spec: "iPhone 13 → 17 — 6 coloris", price: 5000, cat: "coques", badge: "Top vente" },
-  { name: "Coque Transparente", spec: "iPhone 12 → 17 — anti-jaunissement", price: 4500, cat: "coques" },
+  { name: "Lys Bleu", spec: "Coque transparente à motif floral, lys bleu peint à la main. Contour renforcé bleu marine, compatible MagSafe, protection caméra surélevée.", price: 9000, cat: "coques", badge: "Nouveau", featured: true, img: "images/Lys%20Bleu.png" },
+  { name: "Série Cuir", spec: "Cuir grainé façon python, noir profond au fini brillant. Prise en main souple, coins renforcés, boutons métallisés et compatibilité MagSafe.", price: 8000, cat: "coques", featured: true, img: "images/serie%20cuir.png" },
+  { name: "Silicone Mat", spec: "Silicone doux au toucher, fini mat anti-traces. Intérieur microfibre et contour caméra surélevé. Noir, rose poudré, crème et autres teintes.", price: 5000, cat: "coques", badge: "Top vente", img: "images/silicone%20mat.png" },
+  { name: "Coque Transparente", spec: "Transparente anti-jaunissement, croix fine imprimée et verset « Psalms 46:5 — God is within her, she will not fall ». Bords renforcés, boutons précis.", price: 4500, cat: "coques", img: "images/coque%20transparente.png" },
+  { name: "Écaille Ambrée", spec: "Coque effet écaille de tortue ambrée, avec grip décoratif intégré à trois billes (ambre, noir, léopard). Finition brillante, contour rigide translucide.", price: 7000, cat: "coques", badge: "Nouveau", img: "images/%C3%89caille%20Ambr%C3%A9e.png" },
+  { name: "Zèbre Fuchsia", spec: "Coque rigide à motif zèbre rose fuchsia et noir, finition brillante. Contour noir mat, protection caméra intégrée.", price: 7000, cat: "coques", badge: "Nouveau", img: "images/Z%C3%A8bre%20Fuchsia.png" },
+  { name: "Léopard Menthe", spec: "Coque rigide brillante à motif léopard menthe et marron, avec dragonne en corde tressée assortie et mousqueton métallique. Protection caméra intégrée.", price: 7500, cat: "coques", badge: "Nouveau", img: "images/L%C3%A9opard%20Menthe.png" },
   { name: "Câble Tressé 2 m", spec: "USB-C — gaine kevlar", price: 5000, cat: "cables", featured: true },
   { name: "Câble Tressé 1 m", spec: "USB-C — format compact", price: 3500, cat: "cables" },
   { name: "Chargeur 45 W", spec: "Deux ports — format nomade", price: 12000, cat: "chargeurs", badge: "Top vente", featured: true },
@@ -295,11 +354,20 @@ const CATEGORY_LABELS = {
   sacoches: "Sacoches de charge",
 };
 
+const PAGE_SIZE = 8;
 const productGridEl = document.getElementById("product-grid");
-const productsTitleEl = document.getElementById("products-title");
-const showAllEl = document.getElementById("show-all");
 const catalogMetaEl = document.getElementById("catalog-meta");
-const catalogRows = document.querySelectorAll(".catalog__row");
+const showMoreEl = document.getElementById("show-more");
+const filterChips = document.querySelectorAll(".filter-chip");
+
+let activeFilter = "all";
+let shownCount = PAGE_SIZE;
+
+function filteredList(filter) {
+  return filter === "all"
+    ? PRODUCTS
+    : PRODUCTS.filter((p) => p.cat === filter);
+}
 
 function productCard(p) {
   const tagClass =
@@ -307,9 +375,12 @@ function productCard(p) {
   const badge = p.badge
     ? `<span class="${tagClass}">${escapeHtml(p.badge.toUpperCase())}</span>`
     : "";
+  const media = p.img
+    ? `<img class="product__img" src="${p.img}" alt="${escapeHtml(p.name)}" loading="lazy">`
+    : "";
   return `
     <div class="product">
-      <div class="product__media">${badge}</div>
+      <div class="product__media${p.img ? " has-img" : ""}">${media}${badge}</div>
       <div class="product__row product__row--tight">
         <div>
           <div class="product__name">${escapeHtml(p.name)}</div>
@@ -321,34 +392,34 @@ function productCard(p) {
     </div>`;
 }
 
-let currentFilter = "featured";
+function renderProducts() {
+  const list = filteredList(activeFilter);
+  const visible = list.slice(0, shownCount);
 
-function renderProducts(filter) {
-  currentFilter = filter;
-  let list;
-  if (filter === "all") list = PRODUCTS;
-  else if (filter === "featured") list = PRODUCTS.filter((p) => p.featured);
-  else list = PRODUCTS.filter((p) => p.cat === filter);
+  productGridEl.innerHTML = list.length
+    ? visible.map(productCard).join("")
+    : `<p class="product-empty">${
+        CATEGORY_LABELS[activeFilter] || "Cette catégorie"
+      } — bientôt disponible.</p>`;
 
-  productGridEl.innerHTML = list.map(productCard).join("");
-  productsTitleEl.textContent =
-    filter === "featured"
-      ? "Nouveautés & best-sellers"
-      : filter === "all"
-      ? "Tous les articles"
-      : CATEGORY_LABELS[filter] || "Articles";
-
-  if (showAllEl) {
-    showAllEl.textContent =
-      filter === "all" ? "← VOIR MOINS" : "TOUT VOIR →";
+  if (showMoreEl) {
+    const remaining = list.length - visible.length;
+    showMoreEl.hidden = remaining <= 0;
+    showMoreEl.textContent = `Afficher les ${remaining} autres`;
   }
 
-  catalogRows.forEach((r) =>
-    r.setAttribute(
+  filterChips.forEach((chip) =>
+    chip.setAttribute(
       "aria-pressed",
-      r.dataset.category === filter ? "true" : "false"
+      chip.dataset.category === activeFilter ? "true" : "false"
     )
   );
+}
+
+function setFilter(filter) {
+  activeFilter = filter;
+  shownCount = PAGE_SIZE;
+  renderProducts();
 }
 
 if (productGridEl) {
@@ -356,20 +427,22 @@ if (productGridEl) {
     catalogMetaEl.textContent = `COQUES + ACCESSOIRES — ${PRODUCTS.length} RÉFÉRENCES`;
   }
 
-  renderProducts("featured");
-
-  catalogRows.forEach((row) => {
-    row.addEventListener("click", () => {
-      const isActive = row.getAttribute("aria-pressed") === "true";
-      renderProducts(isActive ? "featured" : row.dataset.category);
-      productsTitleEl.scrollIntoView({ behavior: "smooth", block: "start" });
-    });
+  // Compteur par catégorie sur les puces : « Coques (5) »
+  filterChips.forEach((chip) => {
+    const n = filteredList(chip.dataset.category).length;
+    chip.textContent = `${chip.textContent.trim()} (${n})`;
   });
 
-  if (showAllEl) {
-    showAllEl.addEventListener("click", () => {
-      renderProducts(currentFilter === "all" ? "featured" : "all");
-      productsTitleEl.scrollIntoView({ behavior: "smooth", block: "start" });
+  renderProducts();
+
+  filterChips.forEach((chip) => {
+    chip.addEventListener("click", () => setFilter(chip.dataset.category));
+  });
+
+  if (showMoreEl) {
+    showMoreEl.addEventListener("click", () => {
+      shownCount = filteredList(activeFilter).length;
+      renderProducts();
     });
   }
 

@@ -3,12 +3,13 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>U‑case</title>
-  <link rel="icon" type="image/png" sizes="32x32" href="images/ucaselogo.jpeg">
+  <title>U'Case — Safe &amp; Stylish</title>
+  <link rel="icon" type="image/png" sizes="32x32" href="images/newlogo.jpg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Manrope:wght@300;400;500;600;700&display=swap">
   <link rel="stylesheet" href="style.css">
+  <script>document.documentElement.classList.add('js');</script>
 </head>
 <body>
 
@@ -16,17 +17,13 @@
 
   <!-- Header -->
   <header class="site-header">
-    <div class="brand">
-      <img src="images/ucaselogo.jpeg" alt="U‑case" class="brand__logo">
-      <div class="brand__text">
-        <div class="brand__name">U‑CASE</div>
-        <div class="brand__tagline">LA SÉCURITÉ À PORTÉE DE MAIN</div>
-      </div>
-    </div>
+    <a class="brand" href="#" aria-label="U'Case — accueil">
+      <span class="brand__logo"><img src="images/newlogo.jpg" alt="U'Case — Safe &amp; Stylish"></span>
+    </a>
     <nav class="main-nav">
-      <a href="#">iPhone</a>
-      <a href="#">Accessoires</a>
-      <a href="#">À propos</a>
+      <a href="#catalogue">Produits</a>
+      <a href="#apropos">À propos</a>
+      <a href="#contact">Contact</a>
     </nav>
     <div class="header-right">
       <span>FR</span>
@@ -41,16 +38,15 @@
 
   <!-- Menu mobile -->
   <nav class="mobile-menu" id="mobile-menu">
-    <a href="#">iPhone</a>
-    <a href="#">Accessoires</a>
-    <a href="#catalogue">Catalogue</a>
-    <a href="#">À propos</a>
+    <a href="#catalogue">Produits</a>
+    <a href="#apropos">À propos</a>
+    <a href="#contact">Contact</a>
     <a href="https://wa.me/237651487883">Commander sur WhatsApp</a>
   </nav>
 
   <!-- Hero split -->
   <div class="hero">
-    <div class="hero__main">
+    <div class="hero__main anim anim--right">
       <div class="hero__intro">
         <div class="eyebrow">Coques iPhone · Câbles · Chargeurs · Sacoches</div>
         <h1 class="hero__title">Protégez votre téléphone<br>avec style</h1>
@@ -66,7 +62,7 @@
         <span>PAIEMENT À LA LIVRAISON</span>
       </div>
     </div>
-    <div class="hero__visual">
+    <div class="hero__visual anim anim--left">
       <img src="images/ChatGPT Image 27 août 2026, 12_03_47.png" alt="Coque U‑case sur iPhone" class="hero__img">
       <figcaption class="hero__caption">
         <strong>Série Cuir</strong>
@@ -76,17 +72,17 @@
   </div>
 
   <!-- À propos développé -->
-  <div class="section--light-stack">
+  <div class="section--light-stack" id="apropos">
     <div class="about2__head">
-      <div class="about2__headline">
+      <div class="about2__headline reveal">
         <div class="eyebrow--blue">À propos</div>
         <h2 class="display-2">Une boutique née d'un téléphone cassé.</h2>
       </div>
-      <p class="about2__text">U‑case est une boutique en ligne basée à Douala. Elle est née d'une chute de trop et d'une coque qui n'a rien retenu. Depuis, chaque référence est vérifiée avant d'être proposée : ajustement au dixième de millimètre, boutons qui restent nets après six mois, angles renforcés. On ne vend que ce qu'on accepterait de mettre sur son propre téléphone.</p>
+      <p class="about2__text reveal">U‑case est une boutique en ligne basée à Douala. Elle est née d'une chute de trop et d'une coque qui n'a rien retenu. Depuis, chaque référence est vérifiée avant d'être proposée : ajustement au dixième de millimètre, boutons qui restent nets après six mois, angles renforcés. On ne vend que ce qu'on accepterait de mettre sur son propre téléphone.</p>
     </div>
-    <div class="about2__grid">
+    <div class="about2__grid reveal">
       <div class="about2__logo">
-        <img src="images/ucaselogo.jpeg" alt="Logo U‑case — la sécurité à portée de main" class="about2__logo-img">
+        <img src="images/newlogo.jpg" alt="Logo U'Case — Safe &amp; Stylish" class="about2__logo-img">
       </div>
       <div class="about2__points">
         <div class="point">
@@ -106,62 +102,35 @@
   </div>
 
   <!-- Bandeau -->
-  <div class="banner">
+  <div class="banner reveal">
     <span>Livraison rapide à Douala et partout au Cameroun</span>
     <span>Nouvelle série cuir — disponible</span>
   </div>
 
-  <!-- Catalogue -->
+  <!-- Produits -->
   <div class="section--light" id="catalogue">
-    <div class="section__head">
-      <h2 class="section__title">Choisissez votre catégorie</h2>
+    <div class="section__head reveal">
+      <h2 class="section__title">Nos produits</h2>
       <span class="section__meta" id="catalog-meta">COQUES + ACCESSOIRES</span>
     </div>
-    <div class="catalog">
-      <button type="button" class="catalog__row" data-category="coques" aria-pressed="false">
-        <span class="catalog__num">01</span>
-        <span class="catalog__name">Coques iPhone</span>
-        <span class="catalog__desc">13 · 14 · 15 · 16 · 17 Pro Max — MagSafe intégré</span>
-        <span class="catalog__thumb"></span>
-        <span class="catalog__arrow">→</span>
-      </button>
-      <button type="button" class="catalog__row" data-category="cables" aria-pressed="false">
-        <span class="catalog__num">02</span>
-        <span class="catalog__name">Câbles</span>
-        <span class="catalog__desc">USB-C tressé 1 m et 2 m — certifiés MFi</span>
-        <span class="catalog__thumb"></span>
-        <span class="catalog__arrow">→</span>
-      </button>
-      <button type="button" class="catalog__row" data-category="chargeurs" aria-pressed="false">
-        <span class="catalog__num">03</span>
-        <span class="catalog__name">Chargeurs</span>
-        <span class="catalog__desc">Secteur 30 W et 45 W, sans fil MagSafe 15 W</span>
-        <span class="catalog__thumb"></span>
-        <span class="catalog__arrow">→</span>
-      </button>
-      <button type="button" class="catalog__row catalog__row--last" data-category="sacoches" aria-pressed="false">
-        <span class="catalog__num">04</span>
-        <span class="catalog__name">Sacoches de charge</span>
-        <span class="catalog__desc">Pochettes zippées pour chargeur et câbles</span>
-        <span class="catalog__thumb"></span>
-        <span class="catalog__arrow">→</span>
-      </button>
+    <div class="filter-bar reveal" id="filter-bar">
+      <button type="button" class="filter-chip" data-category="all" aria-pressed="true">Tous</button>
+      <button type="button" class="filter-chip" data-category="coques" aria-pressed="false">Coques</button>
+      <button type="button" class="filter-chip" data-category="cables" aria-pressed="false">Câbles</button>
+      <button type="button" class="filter-chip" data-category="chargeurs" aria-pressed="false">Chargeurs</button>
+      <button type="button" class="filter-chip" data-category="sacoches" aria-pressed="false">Sacoches</button>
     </div>
-
-    <div class="section__head--spaced">
-      <h2 class="section__title" id="products-title">Nouveautés &amp; best-sellers</h2>
-      <button type="button" class="link-mono" id="show-all">TOUT VOIR →</button>
-    </div>
-    <div class="product-grid" id="product-grid"></div>
+    <div class="product-grid reveal" id="product-grid"></div>
+    <button class="show-more" id="show-more" type="button" hidden>Afficher tout</button>
   </div>
 
   <!-- À propos en bandes -->
   <div class="section--dark-split">
-    <div class="about__head">
+    <div class="about__head reveal">
       <div class="eyebrow">La sélection</div>
       <h2 class="display-2">Des coques, et le strict nécessaire autour.</h2>
     </div>
-    <div class="about__body">
+    <div class="about__body reveal">
       <p class="about__text">Chaque référence est choisie sur pièce et testée en chute réelle avant d'entrer au catalogue. Elle n'y reste que si elle protège vraiment. La sélection est courte volontairement : elle évolue à chaque sortie d'iPhone.</p>
       <div class="stat-row">
         <div><div class="stat__num">Douala</div><div class="stat__label">EXPÉDITION</div></div>
@@ -172,19 +141,19 @@
   </div>
 
   <!-- Contact -->
-  <div class="contact">
-    <div class="contact__col">
+  <div class="contact" id="contact">
+    <div class="contact__col reveal">
       <div class="eyebrow--sm">Où nous trouver</div>
       <div class="contact__addr">Boutique 100 % en ligne<br>Douala, Cameroun</div>
       <div class="contact__muted">Livraison partout au Cameroun</div>
     </div>
-    <div class="contact__col contact__col--b">
+    <div class="contact__col contact__col--b reveal">
       <div class="eyebrow--sm">Commandes</div>
       <div class="hours-row"><span>WhatsApp</span><span class="hours-row__time">7 j/7</span></div>
       <div class="hours-row"><span>Réponse</span><span class="hours-row__time">sous 1 h</span></div>
       <div class="hours-row"><span>Livraison Douala</span><span class="hours-row__time">24 – 48 h</span></div>
     </div>
-    <div class="contact__col contact__col--c">
+    <div class="contact__col contact__col--c reveal">
       <div class="eyebrow--sm">Commander</div>
       <p class="contact__note">Envoyez votre commande sur WhatsApp. Paiement à la livraison à Douala.</p>
       <a href="https://wa.me/237651487883" class="btn--light">Commander sur WhatsApp</a>
@@ -193,23 +162,24 @@
         <div class="social__links">
           <a href="https://instagram.com/">INSTAGRAM</a>
           <a href="https://tiktok.com/">TIKTOK</a>
-          <a href="https://pinterest.com/">PINTEREST</a>
+          <a href="https://facebook.com/">FACEBOOK</a>
+          <a href="https://snapchat.com/">SNAPCHAT</a>
         </div>
       </div>
     </div>
   </div>
 
   <!-- Footer -->
-  <footer class="site-footer">
+  <footer class="site-footer reveal">
     <div class="site-footer__brand">
-      <img src="images/ucaselogo.jpeg" alt="" class="site-footer__logo">
-      <span>U‑CASE — DOUALA</span>
+      <span class="site-footer__logo"><img src="images/newlogo.jpg" alt="U'Case"></span>
+      <span>DOUALA</span>
     </div>
     <div class="site-footer__links">
       <a href="https://instagram.com/">INSTAGRAM</a>
       <a href="https://tiktok.com/">TIKTOK</a>
-      <a href="https://pinterest.com/">PINTEREST</a>
       <a href="https://facebook.com/">FACEBOOK</a>
+      <a href="https://snapchat.com/">SNAPCHAT</a>
     </div>
     <span>MENTIONS LÉGALES · CGV · LIVRAISON</span>
   </footer>
