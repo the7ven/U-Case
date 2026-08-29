@@ -343,7 +343,8 @@ if (cartDrawer) {
 const PRODUCTS = [
   // NOTE : produits et prix provisoires — à remplacer par le vrai catalogue.
   { name: "Lys Bleu", teaser: "Transparente, lys bleu peint main, contour bleu marine.", spec: "Coque transparente à motif floral, lys bleu peint à la main. Contour renforcé bleu marine, compatible MagSafe, protection caméra surélevée.", price: 9000, cat: "coques", badge: "Nouveau", featured: true, img: "images/Lys%20Bleu.png" },
-  { name: "Série Cuir", teaser: "Cuir grainé façon python, noir brillant, coins renforcés.", spec: "Cuir grainé façon python, noir profond au fini brillant. Prise en main souple, coins renforcés, boutons métallisés et compatibilité MagSafe.", price: 8000, cat: "coques", featured: true, img: "images/serie%20cuir.png" },
+  { name: "Série Cuir", teaser: "Cuir grainé façon python, noir brillant, coins renforcés.", spec: "Cuir grainé façon python, noir profond au fini brillant. Prise en main souple, coins renforcés, boutons métallisés et compatibilité MagSafe.", price: 5000, cat: "coques", featured: true, img: "images/serie%20cuir.png",
+    models: ["iPhone 12", "iPhone 12 Pro", "iPhone 14 Pro Max", "iPhone 17"] },
   { name: "Silicone Mat", teaser: "Silicone doux, fini mat anti-traces. Plusieurs teintes.", spec: "Silicone doux au toucher, fini mat anti-traces. Intérieur microfibre et contour caméra surélevé. Noir, rose poudré, crème et autres teintes.", price: 4000, cat: "coques", badge: "Top vente", img: "images/silicone%20mat.png",
     models: ["iPhone 17 Pro Max"] },
   { name: "Coque Transparente", teaser: "Transparente anti-jaunissement, croix imprimée et verset.", spec: "Transparente anti-jaunissement, croix fine imprimée et verset « Psalms 46:5 — God is within her, she will not fall ». Bords renforcés, boutons précis.", price: 4500, cat: "coques", img: "images/coque%20transparente.png" },
