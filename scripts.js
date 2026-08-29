@@ -380,6 +380,8 @@ const PRODUCTS = [
     models: ["iPhone 11", "iPhone 12 Pro Max", "iPhone 14 Pro", "iPhone 15 Plus", "iPhone 15 Pro", "iPhone 16", "iPhone 16e"] },
   { name: "Grognon", teaser: "Silicone noir mat, tête grognon aux yeux blancs et bouche boudeuse.", spec: "Coque en silicone noir mat au toucher doux, avec une petite tête grognon : gros yeux blancs froncés et bouche boudeuse. Intérieur microfibre, boutons précis. Un caractère bien à elle, discret et fun.", price: 3000, cat: "coques", badge: "Nouveau", img: "images/Grognon.png",
     models: ["iPhone 13 Pro", "iPhone 13 Pro Max", "iPhone 14 Plus", "iPhone 14 Pro", "iPhone 15 Pro", "iPhone 16"] },
+  { name: "Clear Pastel", teaser: "Dos transparent, contour souple teinté. Vert amande, rose poudré, lilas ou bleu ciel.", spec: "La coque simple qui laisse le téléphone parler : dos entièrement transparent, avec un contour souple teinté qui apporte juste ce qu'il faut de couleur sans cacher le design d'origine. Disponible en quatre pastels doux — vert amande, rose poudré, lilas, bleu ciel — à préciser sur WhatsApp au moment de la commande.", price: 4000, cat: "coques", badge: "Nouveau", img: "images/clear%20pastel.png",
+    models: ["iPhone 17 Pro Max"] },
   // Câbles, chargeurs et sacoches : à venir plus tard.
 ];
 
