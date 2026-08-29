@@ -693,15 +693,16 @@ a.btn--light:hover { background: var(--fill-hover); color: var(--on-fill); }
 .site-footer__brand { display: flex; align-items: center; gap: 14px; }
 .site-footer__logo {
   display: block;
-  width: 62px;
-  height: 34px;
+  width: 75px;
+  height: 38px;
   overflow: hidden;
+  flex-shrink: 0;
 }
 .site-footer__logo img {
   display: block;
-  width: 130px;
+  width: 155px;
   max-width: none;
-  margin: -20px 0 0 -35px;
+  margin: -23px 0 0 -42px;
 }
 .site-footer__links { display: flex; gap: 20px; }
 .site-footer__links a { color: var(--muted); }
