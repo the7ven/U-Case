@@ -627,3 +627,7 @@ if (pmodal) {
     openCart();
   });
 }
+
+/* Année du copyright dans le footer */
+const footerYearEl = document.getElementById("footer-year");
+if (footerYearEl) footerYearEl.textContent = new Date().getFullYear();
