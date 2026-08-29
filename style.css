@@ -693,17 +693,20 @@ a.btn--light:hover { background: var(--fill-hover); color: var(--on-fill); }
 .site-footer__brand { display: flex; align-items: center; gap: 14px; }
 .site-footer__logo {
   display: block;
-  width: 75px;
-  height: 38px;
+  width: 142px;
+  height: 66px;
   overflow: hidden;
   flex-shrink: 0;
 }
+
 .site-footer__logo img {
   display: block;
-  width: 155px;
+  width: 268px;
   max-width: none;
-  margin: -23px 0 0 -42px;
+  margin: -40px 0 0 -70px;
 }
+
+
 .site-footer__links { display: flex; gap: 20px; }
 .site-footer__links a { color: var(--muted); }
 .site-footer__links a:hover { color: var(--accent); }
