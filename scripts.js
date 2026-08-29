@@ -202,23 +202,30 @@ function saveCart(cart) {
 }
 
 let cart = loadCart();
+// Migration : les anciens paniers n'ont pas de modèle -> on repart à zéro.
+if (cart.some((i) => !i.model)) {
+  cart = [];
+  saveCart(cart);
+}
 
-function addToCart(name, price, qty = 1) {
-  const line = cart.find((i) => i.name === name);
+const sameLine = (i, name, model) => i.name === name && i.model === model;
+
+function addToCart(name, price, qty = 1, model = "") {
+  const line = cart.find((i) => sameLine(i, name, model));
   if (line) {
     line.qty += qty;
   } else {
-    cart.push({ name, price, qty });
+    cart.push({ name, model, price, qty });
   }
   saveCart(cart);
   renderCart();
 }
 
-function setQty(name, delta) {
-  const line = cart.find((i) => i.name === name);
+function setQty(name, model, delta) {
+  const line = cart.find((i) => sameLine(i, name, model));
   if (!line) return;
   line.qty += delta;
-  if (line.qty <= 0) cart = cart.filter((i) => i.name !== name);
+  if (line.qty <= 0) cart = cart.filter((i) => !sameLine(i, name, model));
   saveCart(cart);
   renderCart();
 }
@@ -245,7 +252,8 @@ function cartTotal() {
 
 function whatsappHref() {
   const lines = cart.map(
-    (i) => `• ${i.name} × ${i.qty} — ${fmt(i.price * i.qty)}`
+    (i) =>
+      `• ${i.name} (${i.model}) × ${i.qty} — ${fmt(i.price * i.qty)}`
   );
   const msg =
     "Bonjour U-case ! Je souhaite commander :\n\n" +
@@ -270,9 +278,10 @@ function renderCart() {
     cartItemsEl.innerHTML = cart
       .map(
         (i) => `
-      <div class="cart-item" data-name="${escapeHtml(i.name)}">
+      <div class="cart-item" data-name="${escapeHtml(i.name)}" data-model="${escapeHtml(i.model)}">
         <div class="cart-item__info">
           <div class="cart-item__name">${escapeHtml(i.name)}</div>
+          <div class="cart-item__model">${escapeHtml(i.model)}</div>
           <div class="cart-item__unit">${fmt(i.price)} l'unité</div>
         </div>
         <div class="cart-item__qty">
@@ -307,8 +316,8 @@ if (cartDrawer) {
   cartItemsEl.addEventListener("click", (e) => {
     const btn = e.target.closest("button[data-act]");
     if (!btn) return;
-    const name = btn.closest(".cart-item").dataset.name;
-    setQty(name, btn.dataset.act === "inc" ? 1 : -1);
+    const row = btn.closest(".cart-item");
+    setQty(row.dataset.name, row.dataset.model, btn.dataset.act === "inc" ? 1 : -1);
   });
 
   cartWaEl.addEventListener("click", (e) => {
@@ -358,6 +367,15 @@ const PRODUCTS = [
 
 const productByName = (name) => PRODUCTS.find((p) => p.name === name);
 
+// Modèles d'iPhone en stock (base + Pro + Pro Max, générations 11 à 17).
+const IPHONE_MODELS = [];
+["11", "12", "13", "14", "15", "16", "17"].forEach((g) => {
+  IPHONE_MODELS.push(`iPhone ${g}`, `iPhone ${g} Pro`, `iPhone ${g} Pro Max`);
+});
+// Par défaut une coque va sur tous les modèles ; `p.models` restreint la liste.
+const modelsFor = (p) => (p.models && p.models.length ? p.models : IPHONE_MODELS);
+const shortModel = (m) => m.replace("iPhone ", "");
+
 const CATEGORY_LABELS = {
   coques: "Coques iPhone",
   cables: "Câbles",
@@ -387,6 +405,14 @@ function badgeHtml(p) {
   return `<span class="${cls}">${escapeHtml(p.badge.toUpperCase())}</span>`;
 }
 
+function compatLabel(p) {
+  const m = modelsFor(p);
+  const gen = (s) => (s.match(/iPhone (\d+)/) || [])[1];
+  const a = gen(m[0]);
+  const b = gen(m[m.length - 1]);
+  return a === b ? `iPhone ${a}` : `iPhone ${a} – ${b}`;
+}
+
 function productCard(p) {
   const n = escapeHtml(p.name);
   const media = p.img
@@ -403,6 +429,7 @@ function productCard(p) {
           <span class="product__price">${fmt(p.price)}</span>
         </div>
         <p class="product__teaser">${escapeHtml(p.teaser || p.spec)}</p>
+        <p class="product__compat">${compatLabel(p)}</p>
         <button class="product__open product__details" type="button" data-name="${n}">Voir les détails</button>
       </div>
     </article>`;
@@ -477,16 +504,35 @@ const pmEls = pmodal && {
   name: document.getElementById("pmodal-name"),
   desc: document.getElementById("pmodal-desc"),
   price: document.getElementById("pmodal-price"),
+  models: document.getElementById("pmodal-model-list"),
   qty: document.getElementById("pmodal-qty"),
   add: document.getElementById("pmodal-add"),
 };
 let pmProduct = null;
 let pmQty = 1;
+let pmModel = null;
 
 function pmRefresh() {
   if (!pmProduct) return;
   pmEls.qty.textContent = pmQty;
-  pmEls.add.textContent = `Ajouter au panier — ${fmt(pmProduct.price * pmQty)}`;
+  if (pmModel) {
+    pmEls.add.disabled = false;
+    pmEls.add.textContent = `Ajouter au panier — ${fmt(pmProduct.price * pmQty)}`;
+  } else {
+    pmEls.add.disabled = true;
+    pmEls.add.textContent = "Choisissez un modèle";
+  }
+}
+
+function pmRenderModels() {
+  pmEls.models.innerHTML = modelsFor(pmProduct)
+    .map(
+      (m) =>
+        `<button type="button" class="pmodal__model-chip" data-model="${escapeHtml(
+          m
+        )}" aria-pressed="false">${escapeHtml(shortModel(m))}</button>`
+    )
+    .join("");
 }
 
 function openProductModal(name) {
@@ -494,6 +540,8 @@ function openProductModal(name) {
   if (!p || !pmodal) return;
   pmProduct = p;
   pmQty = 1;
+  pmModel = null;
+  pmRenderModels();
 
   if (p.img) {
     pmEls.img.src = p.img;
@@ -543,9 +591,18 @@ if (pmodal) {
       pmRefresh();
     })
   );
+  pmEls.models.addEventListener("click", (e) => {
+    const chip = e.target.closest(".pmodal__model-chip");
+    if (!chip) return;
+    pmModel = chip.dataset.model;
+    pmEls.models
+      .querySelectorAll(".pmodal__model-chip")
+      .forEach((c) => c.setAttribute("aria-pressed", c === chip ? "true" : "false"));
+    pmRefresh();
+  });
   pmEls.add.addEventListener("click", () => {
-    if (!pmProduct) return;
-    addToCart(pmProduct.name, pmProduct.price, pmQty);
+    if (!pmProduct || !pmModel) return;
+    addToCart(pmProduct.name, pmProduct.price, pmQty, pmModel);
     closeProductModal();
     openCart();
   });

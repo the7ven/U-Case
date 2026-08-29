@@ -503,6 +503,13 @@ a.btn--ghost:hover { border-color: var(--accent); color: var(--ink); }
   -webkit-box-orient: vertical;
   overflow: hidden;
 }
+.product__compat {
+  margin: 0;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10.5px;
+  letter-spacing: 0.05em;
+  color: var(--faint);
+}
 .product__details {
   margin-top: auto;
   padding: 11px 12px;
@@ -779,6 +786,11 @@ a.btn--light:hover { background: var(--fill-hover); color: var(--on-fill); }
   border-bottom: 1px solid var(--line);
 }
 .cart-item__name { font-size: 15px; font-weight: 600; }
+.cart-item__model {
+  margin-top: 2px;
+  font-size: 12.5px;
+  color: var(--ink-2);
+}
 .cart-item__unit {
   margin-top: 3px;
   font-family: 'IBM Plex Mono', monospace;
@@ -1064,6 +1076,41 @@ a.btn--light:hover { background: var(--fill-hover); color: var(--on-fill); }
   line-height: 1.7;
   color: var(--ink-2);
 }
+.pmodal__models {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 2px;
+}
+.pmodal__models-label {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.pmodal__model-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+.pmodal__model-chip {
+  padding: 7px 11px;
+  background: none;
+  border: 1px solid var(--line-2);
+  color: var(--ink-2);
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.04em;
+  cursor: pointer;
+  transition: border-color 0.12s ease, color 0.12s ease, background 0.12s ease;
+}
+.pmodal__model-chip:hover { border-color: var(--accent); color: var(--ink); }
+.pmodal__model-chip[aria-pressed="true"] {
+  background: var(--fill);
+  border-color: var(--fill);
+  color: var(--on-fill);
+}
 .pmodal__qty {
   display: flex;
   align-items: center;
@@ -1102,6 +1149,12 @@ a.btn--light:hover { background: var(--fill-hover); color: var(--on-fill); }
   cursor: pointer;
 }
 .pmodal__add:hover { background: var(--fill-hover); border-color: var(--fill-hover); }
+.pmodal__add:disabled {
+  background: #efe7ea;
+  border-color: #efe7ea;
+  color: var(--faint);
+  cursor: not-allowed;
+}
 
 /* ======================================================
    Responsive
