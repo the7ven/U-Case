@@ -203,12 +203,12 @@ function saveCart(cart) {
 
 let cart = loadCart();
 
-function addToCart(name, price) {
+function addToCart(name, price, qty = 1) {
   const line = cart.find((i) => i.name === name);
   if (line) {
-    line.qty += 1;
+    line.qty += qty;
   } else {
-    cart.push({ name, price, qty: 1 });
+    cart.push({ name, price, qty });
   }
   saveCart(cart);
   renderCart();
@@ -330,22 +330,33 @@ if (cartDrawer) {
 }
 
 /* ---------- Catalogue par catégorie ---------- */
+// teaser = phrase courte sur la carte ; spec = description complète dans la fiche.
 const PRODUCTS = [
   // NOTE : produits et prix provisoires — à remplacer par le vrai catalogue.
-  { name: "Lys Bleu", spec: "Coque transparente à motif floral, lys bleu peint à la main. Contour renforcé bleu marine, compatible MagSafe, protection caméra surélevée.", price: 9000, cat: "coques", badge: "Nouveau", featured: true, img: "images/Lys%20Bleu.png" },
-  { name: "Série Cuir", spec: "Cuir grainé façon python, noir profond au fini brillant. Prise en main souple, coins renforcés, boutons métallisés et compatibilité MagSafe.", price: 8000, cat: "coques", featured: true, img: "images/serie%20cuir.png" },
-  { name: "Silicone Mat", spec: "Silicone doux au toucher, fini mat anti-traces. Intérieur microfibre et contour caméra surélevé. Noir, rose poudré, crème et autres teintes.", price: 5000, cat: "coques", badge: "Top vente", img: "images/silicone%20mat.png" },
-  { name: "Coque Transparente", spec: "Transparente anti-jaunissement, croix fine imprimée et verset « Psalms 46:5 — God is within her, she will not fall ». Bords renforcés, boutons précis.", price: 4500, cat: "coques", img: "images/coque%20transparente.png" },
-  { name: "Écaille Ambrée", spec: "Coque effet écaille de tortue ambrée, avec grip décoratif intégré à trois billes (ambre, noir, léopard). Finition brillante, contour rigide translucide.", price: 7000, cat: "coques", badge: "Nouveau", img: "images/%C3%89caille%20Ambr%C3%A9e.png" },
-  { name: "Zèbre Fuchsia", spec: "Coque rigide à motif zèbre rose fuchsia et noir, finition brillante. Contour noir mat, protection caméra intégrée.", price: 7000, cat: "coques", badge: "Nouveau", img: "images/Z%C3%A8bre%20Fuchsia.png" },
-  { name: "Léopard Menthe", spec: "Coque rigide brillante à motif léopard menthe et marron, avec dragonne en corde tressée assortie et mousqueton métallique. Protection caméra intégrée.", price: 7500, cat: "coques", badge: "Nouveau", img: "images/L%C3%A9opard%20Menthe.png" },
-  { name: "Câble Tressé 2 m", spec: "USB-C — gaine kevlar", price: 5000, cat: "cables", featured: true },
-  { name: "Câble Tressé 1 m", spec: "USB-C — format compact", price: 3500, cat: "cables" },
-  { name: "Chargeur 45 W", spec: "Deux ports — format nomade", price: 12000, cat: "chargeurs", badge: "Top vente", featured: true },
-  { name: "Chargeur MagSafe 15 W", spec: "Sans fil — aimanté", price: 10000, cat: "chargeurs" },
-  { name: "Pochette Zippée", spec: "Chargeur + 2 câbles", price: 4500, cat: "sacoches" },
-  { name: "Trousse Voyage", spec: "Compartiments rigides", price: 7000, cat: "sacoches" },
+  { name: "Lys Bleu", teaser: "Transparente, lys bleu peint main, contour bleu marine.", spec: "Coque transparente à motif floral, lys bleu peint à la main. Contour renforcé bleu marine, compatible MagSafe, protection caméra surélevée.", price: 9000, cat: "coques", badge: "Nouveau", featured: true, img: "images/Lys%20Bleu.png" },
+  { name: "Série Cuir", teaser: "Cuir grainé façon python, noir brillant, coins renforcés.", spec: "Cuir grainé façon python, noir profond au fini brillant. Prise en main souple, coins renforcés, boutons métallisés et compatibilité MagSafe.", price: 8000, cat: "coques", featured: true, img: "images/serie%20cuir.png" },
+  { name: "Silicone Mat", teaser: "Silicone doux, fini mat anti-traces. Plusieurs teintes.", spec: "Silicone doux au toucher, fini mat anti-traces. Intérieur microfibre et contour caméra surélevé. Noir, rose poudré, crème et autres teintes.", price: 5000, cat: "coques", badge: "Top vente", img: "images/silicone%20mat.png" },
+  { name: "Coque Transparente", teaser: "Transparente anti-jaunissement, croix imprimée et verset.", spec: "Transparente anti-jaunissement, croix fine imprimée et verset « Psalms 46:5 — God is within her, she will not fall ». Bords renforcés, boutons précis.", price: 4500, cat: "coques", img: "images/coque%20transparente.png" },
+  { name: "Écaille Ambrée", teaser: "Effet écaille de tortue ambrée, grip trois billes intégré.", spec: "Coque effet écaille de tortue ambrée, avec grip décoratif intégré à trois billes (ambre, noir, léopard). Finition brillante, contour rigide translucide.", price: 7000, cat: "coques", badge: "Nouveau", img: "images/%C3%89caille%20Ambr%C3%A9e.png" },
+  { name: "Zèbre Fuchsia", teaser: "Motif zèbre rose fuchsia et noir, contour noir mat.", spec: "Coque rigide à motif zèbre rose fuchsia et noir, finition brillante. Contour noir mat, protection caméra intégrée.", price: 7000, cat: "coques", badge: "Nouveau", img: "images/Z%C3%A8bre%20Fuchsia.png" },
+  { name: "Léopard Menthe", teaser: "Léopard menthe & marron, dragonne corde tressée assortie.", spec: "Coque rigide brillante à motif léopard menthe et marron, avec dragonne en corde tressée assortie et mousqueton métallique. Protection caméra intégrée.", price: 7500, cat: "coques", badge: "Nouveau", img: "images/L%C3%A9opard%20Menthe.png" },
+  { name: "Tweed Chic", teaser: "Dos en tweed pied-de-poule, contour noir, dragonne cuir à pompon.", spec: "Coque à dos en tissu tweed pied-de-poule (beige, noir, rouge, kaki), contour rigide noir. Livrée avec dragonne en cuir à pompon et breloque cœur.", price: 7500, cat: "coques", badge: "Nouveau", img: "images/tweed-chic.png" },
+  { name: "Cœur Anatomique", teaser: "Transparente rose, cœur anatomique illustré et citation.", spec: "Coque transparente rose à illustration de cœur anatomique et citation imprimée. Livrée avec cache-objectif et film de protection d'écran assortis.", price: 6000, cat: "coques", badge: "Nouveau", img: "images/coeur-atomique.png" },
+  { name: "Suédine Camel", teaser: "Grain suédine camel doux au toucher, boutons et tour caméra dorés.", spec: "Une coque volontairement épurée, où la texture fait tout le travail : un grain suédine doux au toucher, dans un camel chaud, associé à des touches dorées sur les boutons et le tour caméra. Pensée pour celles et ceux qui veulent une protection discrète mais qui ne fait pas « plastique ».", price: 8000, cat: "coques", badge: "Nouveau", img: "images/suedine%20camel.png" },
+  { name: "Cœurs Believe", teaser: "Pluie de petits cœurs bicolores sur fond transparent, citation au dos.", spec: "Une coque légère et positive, avec une pluie de petits cœurs bicolores sur fond transparent et une citation encourageante (« Believe in yourself, and you will be unstoppable. ») imprimée au dos. Simple, mais avec un vrai message.", price: 5500, cat: "coques", badge: "Nouveau", img: "images/coeur%20believe.png" },
+  { name: "Trio Nœuds Roses", teaser: "Lot de 3 : rose rayé, noir à nœuds et cœurs, écru graphique.", spec: "Trois façons de porter le même thème : le rose à fines rayures pour un look doux, le noir avec nœuds et cœurs pour plus de contraste, l'écru aux nœuds dessinés en grand format pour un rendu plus graphique. Idéal pour varier selon l'humeur ou pour offrir en lot.", price: 12000, cat: "coques", badge: "Nouveau", img: "images/trio%20noeud%20rose.png" },
+  { name: "Matelassé Noir", teaser: "Matelassage capitonné, clous strassés, bracelet de perles amovible.", spec: "Une coque au rendu haute couture : matelassage façon cuir capitonné, clous strassés au fil du motif, et contour caméra entièrement serti. Le bracelet en perles amovible, terminé par un nœud et un mousqueton, ajoute une vraie pièce d'accessoire — pas juste une dragonne fonctionnelle.", price: 9500, cat: "coques", badge: "Nouveau", img: "images/matelass%C3%A9-noir.png" },
+  { name: "Trio Vintage", teaser: "Lot de 3 : nœuds sur rose, pois noirs sur écru, rayures rose et noir.", spec: "Un mini-vestiaire de motifs intemporels revisités : le nœud romantique, le pois graphique, la rayure marinière détournée en rose et noir. Trois pièces qui peuvent se porter séparément ou en collection, avec une identité commune facile à reconnaître.", price: 12000, cat: "coques", badge: "Nouveau", img: "images/trio-vintage.png" },
+  { name: "Minou Kawaii 3D", teaser: "Silicone épais rose, gros nœud sculpté 3D, chat blanc à cœurs et étoiles.", spec: "Une coque ludique en silicone épais, avec un gros nœud sculpté en 3D au niveau du bloc caméra et une illustration de chat blanc à cœurs et étoiles. Un format qui plaît surtout pour son côté kawaii et tactile.", price: 7000, cat: "coques", badge: "Nouveau", img: "images/hello-kitty.png" },
+  { name: "Câble Tressé 2 m", teaser: "USB-C tressé kevlar, 2 mètres.", spec: "Câble USB-C vers USB-C de 2 m, gaine tressée kevlar résistante aux nœuds. Charge et transfert de données.", price: 5000, cat: "cables", featured: true },
+  { name: "Câble Tressé 1 m", teaser: "USB-C tressé, format compact 1 mètre.", spec: "Câble USB-C vers USB-C de 1 m, gaine tressée, format compact pour le sac ou la voiture.", price: 3500, cat: "cables" },
+  { name: "Chargeur 45 W", teaser: "Deux ports, format nomade, charge rapide.", spec: "Chargeur secteur 45 W à deux ports USB-C, format nomade. Charge rapide iPhone et compatible ordinateur portable léger.", price: 12000, cat: "chargeurs", badge: "Top vente", featured: true },
+  { name: "Chargeur MagSafe 15 W", teaser: "Recharge sans fil aimantée 15 W.", spec: "Chargeur sans fil aimanté 15 W, alignement automatique sur l'iPhone. Câble intégré.", price: 10000, cat: "chargeurs" },
+  { name: "Pochette Zippée", teaser: "Range chargeur + 2 câbles.", spec: "Pochette zippée compacte pour ranger un chargeur et deux câbles. Intérieur avec passants élastiques.", price: 4500, cat: "sacoches" },
+  { name: "Trousse Voyage", teaser: "Compartiments rigides pour vos accessoires.", spec: "Trousse de voyage à compartiments rigides pour chargeur, câbles, écouteurs et batterie externe.", price: 7000, cat: "sacoches" },
 ];
+
+const productByName = (name) => PRODUCTS.find((p) => p.name === name);
 
 const CATEGORY_LABELS = {
   coques: "Coques iPhone",
@@ -369,27 +380,32 @@ function filteredList(filter) {
     : PRODUCTS.filter((p) => p.cat === filter);
 }
 
+function badgeHtml(p) {
+  if (!p.badge) return "";
+  const cls =
+    p.badge.toLowerCase() === "nouveau" ? "tag--blue" : "tag--dark";
+  return `<span class="${cls}">${escapeHtml(p.badge.toUpperCase())}</span>`;
+}
+
 function productCard(p) {
-  const tagClass =
-    p.badge && p.badge.toLowerCase() === "nouveau" ? "tag--blue" : "tag--dark";
-  const badge = p.badge
-    ? `<span class="${tagClass}">${escapeHtml(p.badge.toUpperCase())}</span>`
-    : "";
+  const n = escapeHtml(p.name);
   const media = p.img
-    ? `<img class="product__img" src="${p.img}" alt="${escapeHtml(p.name)}" loading="lazy">`
+    ? `<img class="product__img" src="${p.img}" alt="${n}" loading="lazy">`
     : "";
   return `
-    <div class="product">
-      <div class="product__media${p.img ? " has-img" : ""}">${media}${badge}</div>
-      <div class="product__row product__row--tight">
-        <div>
-          <div class="product__name">${escapeHtml(p.name)}</div>
-          <div class="product__spec">${escapeHtml(p.spec)}</div>
+    <article class="product">
+      <button class="product__open" type="button" data-name="${n}" aria-label="Voir les détails : ${n}">
+        <span class="product__media${p.img ? " has-img" : ""}">${media}${badgeHtml(p)}</span>
+      </button>
+      <div class="product__body">
+        <div class="product__row">
+          <span class="product__name">${n}</span>
+          <span class="product__price">${fmt(p.price)}</span>
         </div>
-        <div class="product__price">${fmt(p.price)}</div>
+        <p class="product__teaser">${escapeHtml(p.teaser || p.spec)}</p>
+        <button class="product__open product__details" type="button" data-name="${n}">Voir les détails</button>
       </div>
-      <button class="product__add" type="button" data-name="${escapeHtml(p.name)}" data-price="${p.price}">Ajouter au panier</button>
-    </div>`;
+    </article>`;
 }
 
 function renderProducts() {
@@ -446,17 +462,91 @@ if (productGridEl) {
     });
   }
 
-  // Ajout au panier (délégation, la grille est régénérée)
+  // Délégation : ouvrir la fiche produit (la grille est régénérée)
   productGridEl.addEventListener("click", (e) => {
-    const btn = e.target.closest(".product__add");
-    if (!btn) return;
-    addToCart(btn.dataset.name, Number(btn.dataset.price));
-    btn.classList.add("added");
-    btn.textContent = "Ajouté ✓";
-    setTimeout(() => {
-      btn.classList.remove("added");
-      btn.textContent = "Ajouter au panier";
-    }, 1200);
+    const openBtn = e.target.closest(".product__open");
+    if (openBtn) openProductModal(openBtn.dataset.name);
+  });
+}
+
+/* ---------- Fiche produit (modale) ---------- */
+const pmodal = document.getElementById("pmodal");
+const pmEls = pmodal && {
+  img: document.getElementById("pmodal-img"),
+  badge: document.getElementById("pmodal-badge"),
+  name: document.getElementById("pmodal-name"),
+  desc: document.getElementById("pmodal-desc"),
+  price: document.getElementById("pmodal-price"),
+  qty: document.getElementById("pmodal-qty"),
+  add: document.getElementById("pmodal-add"),
+};
+let pmProduct = null;
+let pmQty = 1;
+
+function pmRefresh() {
+  if (!pmProduct) return;
+  pmEls.qty.textContent = pmQty;
+  pmEls.add.textContent = `Ajouter au panier — ${fmt(pmProduct.price * pmQty)}`;
+}
+
+function openProductModal(name) {
+  const p = productByName(name);
+  if (!p || !pmodal) return;
+  pmProduct = p;
+  pmQty = 1;
+
+  if (p.img) {
+    pmEls.img.src = p.img;
+    pmEls.img.alt = p.name;
+    pmEls.img.hidden = false;
+  } else {
+    pmEls.img.hidden = true;
+  }
+  pmEls.badge.hidden = !p.badge;
+  if (p.badge) {
+    pmEls.badge.textContent = p.badge.toUpperCase();
+    pmEls.badge.className =
+      "pmodal__badge " +
+      (p.badge.toLowerCase() === "nouveau" ? "tag--blue" : "tag--dark");
+  }
+  pmEls.name.textContent = p.name;
+  pmEls.desc.textContent = p.spec;
+  pmEls.price.textContent = fmt(p.price);
+  pmRefresh();
+
+  pmodal.hidden = false;
+  requestAnimationFrame(() => pmodal.classList.add("open"));
+  pmodal.setAttribute("aria-hidden", "false");
+  document.body.style.overflow = "hidden";
+}
+
+function closeProductModal() {
+  if (!pmodal) return;
+  pmodal.classList.remove("open");
+  pmodal.setAttribute("aria-hidden", "true");
+  document.body.style.overflow = "";
+  setTimeout(() => {
+    pmodal.hidden = true;
+  }, 220);
+}
+
+if (pmodal) {
+  pmodal.querySelectorAll("[data-pmodal-close]").forEach((el) =>
+    el.addEventListener("click", closeProductModal)
+  );
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape" && !pmodal.hidden) closeProductModal();
+  });
+  pmodal.querySelectorAll("[data-q]").forEach((btn) =>
+    btn.addEventListener("click", () => {
+      pmQty = Math.max(1, pmQty + (btn.dataset.q === "inc" ? 1 : -1));
+      pmRefresh();
+    })
+  );
+  pmEls.add.addEventListener("click", () => {
+    if (!pmProduct) return;
+    addToCart(pmProduct.name, pmProduct.price, pmQty);
+    closeProductModal();
     openCart();
   });
 }
