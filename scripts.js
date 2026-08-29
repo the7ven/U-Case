@@ -376,12 +376,7 @@ const PRODUCTS = [
     models: ["iPhone 11", "iPhone 12 Pro Max", "iPhone 14 Pro", "iPhone 15 Plus", "iPhone 15 Pro", "iPhone 16", "iPhone 16e"] },
   { name: "Grognon", teaser: "Silicone noir mat, tête grognon aux yeux blancs et bouche boudeuse.", spec: "Coque en silicone noir mat au toucher doux, avec une petite tête grognon : gros yeux blancs froncés et bouche boudeuse. Intérieur microfibre, boutons précis. Un caractère bien à elle, discret et fun.", price: 3000, cat: "coques", badge: "Nouveau", img: "images/Grognon.png",
     models: ["iPhone 13 Pro", "iPhone 13 Pro Max", "iPhone 14 Plus", "iPhone 14 Pro", "iPhone 15 Pro", "iPhone 16"] },
-  { name: "Câble Tressé 2 m", teaser: "USB-C tressé kevlar, 2 mètres.", spec: "Câble USB-C vers USB-C de 2 m, gaine tressée kevlar résistante aux nœuds. Charge et transfert de données.", price: 5000, cat: "cables", featured: true },
-  { name: "Câble Tressé 1 m", teaser: "USB-C tressé, format compact 1 mètre.", spec: "Câble USB-C vers USB-C de 1 m, gaine tressée, format compact pour le sac ou la voiture.", price: 3500, cat: "cables" },
-  { name: "Chargeur 45 W", teaser: "Deux ports, format nomade, charge rapide.", spec: "Chargeur secteur 45 W à deux ports USB-C, format nomade. Charge rapide iPhone et compatible ordinateur portable léger.", price: 12000, cat: "chargeurs", badge: "Top vente", featured: true },
-  { name: "Chargeur MagSafe 15 W", teaser: "Recharge sans fil aimantée 15 W.", spec: "Chargeur sans fil aimanté 15 W, alignement automatique sur l'iPhone. Câble intégré.", price: 10000, cat: "chargeurs" },
-  { name: "Pochette Zippée", teaser: "Range chargeur + 2 câbles.", spec: "Pochette zippée compacte pour ranger un chargeur et deux câbles. Intérieur avec passants élastiques.", price: 4500, cat: "sacoches" },
-  { name: "Trousse Voyage", teaser: "Compartiments rigides pour vos accessoires.", spec: "Trousse de voyage à compartiments rigides pour chargeur, câbles, écouteurs et batterie externe.", price: 7000, cat: "sacoches" },
+  // Câbles, chargeurs et sacoches : à venir plus tard.
 ];
 
 const productByName = (name) => PRODUCTS.find((p) => p.name === name);
@@ -486,7 +481,7 @@ function setFilter(filter) {
 
 if (productGridEl) {
   if (catalogMetaEl) {
-    catalogMetaEl.textContent = `COQUES + ACCESSOIRES — ${PRODUCTS.length} RÉFÉRENCES`;
+    catalogMetaEl.textContent = `${PRODUCTS.length} MODÈLES DE COQUES`;
   }
 
   // Compteur par catégorie sur les puces : « Coques (5) »
