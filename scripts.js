@@ -1,8 +1,11 @@
 /* ============================================================
-   U-case — navbar responsive + panier WhatsApp
+   U'Case — navbar responsive + panier WhatsApp
    ============================================================ */
 
 const WHATSAPP_NUMBER = "237651487883"; // code pays + numéro
+// Une fois le site en ligne, mettre son adresse ici (ex. "https://ucase.cm").
+// Le message WhatsApp joindra alors le lien de la photo de chaque coque.
+const SITE_URL = "";
 
 /* ---------- Animations au scroll (hero) ---------- */
 (function heroScrollAnim() {
@@ -210,12 +213,12 @@ if (cart.some((i) => !i.model)) {
 
 const sameLine = (i, name, model) => i.name === name && i.model === model;
 
-function addToCart(name, price, qty = 1, model = "") {
+function addToCart(name, price, qty = 1, model = "", img = "") {
   const line = cart.find((i) => sameLine(i, name, model));
   if (line) {
     line.qty += qty;
   } else {
-    cart.push({ name, model, price, qty });
+    cart.push({ name, model, price, qty, img });
   }
   saveCart(cart);
   renderCart();
@@ -251,12 +254,14 @@ function cartTotal() {
 }
 
 function whatsappHref() {
-  const lines = cart.map(
-    (i) =>
-      `• ${i.name} (${i.model}) × ${i.qty} — ${fmt(i.price * i.qty)}`
-  );
+  const base = SITE_URL.replace(/\/+$/, "");
+  const lines = cart.map((i) => {
+    let line = `• ${i.name} (${i.model}) × ${i.qty} — ${fmt(i.price * i.qty)}`;
+    if (base && i.img) line += `\n  ${base}/${i.img}`;
+    return line;
+  });
   const msg =
-    "Bonjour U-case ! Je souhaite commander :\n\n" +
+    "Bonjour U'Case ! Je souhaite commander :\n\n" +
     lines.join("\n") +
     `\n\nTotal : ${fmt(cartTotal())}` +
     "\n\nMerci de me confirmer la disponibilité et le délai de livraison.";
@@ -616,7 +621,7 @@ if (pmodal) {
   });
   pmEls.add.addEventListener("click", () => {
     if (!pmProduct || !pmModel) return;
-    addToCart(pmProduct.name, pmProduct.price, pmQty, pmModel);
+    addToCart(pmProduct.name, pmProduct.price, pmQty, pmModel, pmProduct.img || "");
     closeProductModal();
     openCart();
   });
