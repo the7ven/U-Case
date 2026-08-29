@@ -3,9 +3,8 @@
    ============================================================ */
 
 const WHATSAPP_NUMBER = "237651487883"; // code pays + numéro
-// Une fois le site en ligne, mettre son adresse ici (ex. "https://ucase.cm").
-// Le message WhatsApp joindra alors le lien de la photo de chaque coque.
-const SITE_URL = "";
+// Adresse du site en ligne : le message WhatsApp joint le lien de la photo de chaque coque.
+const SITE_URL = "https://u-case.vercel.app";
 
 /* ---------- Animations au scroll (hero) ---------- */
 (function heroScrollAnim() {
